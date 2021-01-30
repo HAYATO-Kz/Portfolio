@@ -1,0 +1,231 @@
+.column-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.mobile {
+  display: none;
+}
+
+body,
+html {
+  height: 100%;
+  margin: 0;
+  background: #000000;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+}
+
+.content-container {
+  display: flex;
+  flex-direction: row;
+  margin: 0 0 024px;
+  position: relative;
+}
+
+.content {
+  max-height: 100%;
+  overflow-y: scroll;
+}
+
+.guide-bar {
+  top: 0;
+  width: 500px;
+}
+
+.sticky {
+  position: sticky;
+  top: 10;
+}
+
+.container {
+  padding: 24px;
+  align-items: center;
+  max-width: 70%;
+  position: relative;
+}
+
+.name {
+  font-size: 36px;
+  font-weight: 700;
+}
+
+.role {
+  font-size: 28px;
+  font-weight: 400;
+}
+
+.content-header {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.content-header:not(:first-child) {
+  margin-top: 24px;
+}
+
+.sub-content-header {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0 0 14px;
+}
+
+.horizontal-divider-line {
+  height: 100%;
+  width: 2px;
+  background: #ffffff;
+  margin: 0 24px;
+}
+
+.guide-text {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.guide-bar .guide-text:not(:first-child) {
+  margin: 16px 0 0;
+}
+
+.default-text {
+  color: #ffffff;
+  font-size: 17px;
+}
+
+.contact-text {
+  margin: 0 0 16px;
+}
+
+.primary-content-color {
+  color: #dc143c;
+}
+
+.fbutton {
+  background: #dc143c;
+  color: #ffffff;
+}
+
+.btn-primary,
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:visited {
+  background-color: #dc143c !important;
+  border-color: #dc143c !important;
+  width: 100%;
+}
+
+.btn-secondary {
+  width: 100%;
+}
+
+.btn-check:focus + .btn-primary,
+.btn-primary:focus {
+  box-shadow: 0 0 0 0.25rem rgb(86 8 24 / 50%) !important;
+}
+
+.profile-container {
+  display: flex;
+  flex-direction: row;
+  margin: 0 0 36px;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.profile-detail-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 0 0 24px;
+}
+
+.sub-header {
+  font-weight: 600;
+  margin: 24px 0 0;
+}
+
+.sub-content-header {
+  font-weight: 600;
+  margin: 16px 0 0 16px;
+}
+
+.sub-content {
+  margin: 0 0 0 32px;
+}
+
+ul {
+  margin: 0;
+}
+
+.github-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.github_logo {
+  margin: 0 8px 0 0;
+}
+
+.form-group {
+  margin: 0 0 24px;
+}
+
+.content-header-mobile {
+  font-size: 24px;
+  font-weight: 600;
+  margin: 16px 0 0;
+}
+
+.mobile-sticky {
+  display: none;
+}
+
+@media only screen and (max-width: 930px) {
+  .mobile {
+    display: flex;
+    flex-direction: column;
+  }
+  .profile-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .container {
+    max-width: 100%;
+    width: 100%;
+    padding: 24px;
+  }
+
+  .content {
+    margin: 0 0 50px 0;
+  }
+
+  .profile-detail-container {
+    margin: 24px 0 0 0;
+  }
+
+  .contact-text {
+    margin: 16px 0 0;
+  }
+
+  .guide-bar {
+    display: none;
+  }
+
+  .horizontal-divider-line {
+    display: none;
+  }
+
+  .sub-header {
+    margin: 12px 0 0;
+  }
+
+  .mobile-sticky {
+    display: block;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+  }
+}

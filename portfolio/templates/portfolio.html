@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'portfolio/css/style.css' %}">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+        crossorigin="anonymous"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="column-container container">
+        <div class="profile-container">
+            <img id="profile-image" src="{% static 'portfolio/images/profile_image.png' %}" height="250px"
+                width="250px" />
+            <div class="profile-detail-container">
+                <div class="name primary-content-color">{{ profile.firstname}} {{ profile.lastname }} [{{ profile.nickname }}]</div>
+                <div class="role primary-content-color">{{ profile.role }}</div>
+            </div>
+        </div>
+        <div class="content-container">
+            <div class="guide-bar column-container">
+                <div class="sticky">
+                    <div class="content-header primary-content-color">CONTACT</div>
+                    {% for contact,v in profile.contact.items %}
+                    <div class="default-text contact-text"> {{ contact }}: {{ v }}</div>
+                    {% endfor %}
+                    <button type="button" class="btn btn-primary btn-lg btn-block" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal">
+                        Contact me
+                    </button>
+                </div>
+            </div>
+            <div class="horizontal-divider-line"></div>
+            <div class="column-container content">
+                <div class="content-header primary-content-color">ABOUT ME</div>
+                <div class="default-text">{{ profile.description }}</div>
+                <div class="mobile">
+                    <div class="content-header-mobile primary-content-color">CONTACT</div>
+                    {% for contact,v in profile.contact.items %}
+                    <div class="default-text contact-text"> {{ contact }}:  {{ v }}</div>
+                    {% endfor %}
+                </div>
+                <div class="content-header primary-content-color">EDUCATION</div>
+                {% for education in educations %}
+                <div class="default-text sub-header">{{ education.start_year }}-{{ education.end_year }}</div>
+                <div class="default-text">{{ education.department }}</div>
+                <div class="default-text">{{ education.university }}</div>
+                {% endfor %}
+                <div class="content-header primary-content-color">SKILL</div>
+                {% for skill in skills %}
+                {% ifchanged skill.type %}
+                <div class="default-text sub-header">{{ skill.getText }}</div>
+                {% endifchanged %}
+                <li class="default-text sub-content">{{ skill.title }}</li>
+                {% endfor %}
+                <div class="content-header primary-content-color">EXPERIENCE</div>
+                {% for experience in experiences %}
+                {% ifchanged experience.pub_date.year %}
+                <div class="default-text sub-header">{{ experience.pub_date.year}}</div>
+                {% endifchanged %}
+                <li class="default-text sub-content">{{ experience.title }}</li>
+                <ul>
+                    <div class="default-text sub-content">{{ experience.description }}</div>
+                </ul>
+                {% endfor %}
+                <div class="content-header primary-content-color">PROJECT</div>
+                {% for project in projects %}
+                {% ifchanged project.pub_date.year %}
+                <div class="default-text sub-header">{{ project.pub_date.year}}</div>
+                {% endifchanged %}
+                <li class="default-text sub-content">{{ project.title }}</li>
+                <ul>
+                    {% if project.github_link != '-' %}
+                    <a class="github-row sub-content" href="{{ project.github_link }}">
+                        <!-- <div class="default-text">{{ project.github_link }}</div> -->
+                        <img class="github_logo" src="{% static 'portfolio/images/github_logo.png' %}" height="25px"
+                            width="25px" />
+                        <div class="default-text">{{ project.github_link }}</div>
+                    </a>
+                    {% endif %}
+                    <div class="default-text sub-content">{{ project.role }}</div>
+                    <div class="default-text sub-content">{{ project.description }}</div>
+                </ul>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="mobile-sticky">
+            <button type="button" class="btn btn-primary btn-lg btn-block" data-bs-toggle="modal"
+                    data-bs-target="#exampleModal">
+                    Contact me
+            </button>
+        </div>
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Contact me</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="POST" action="">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="email">Email address</label>
+                                <input name="email" type="email" class="form-control" id="email"
+                                    placeholder="Enter email" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="subject">Subject</label>
+                                <input name="subject" type="subject" class="form-control" id="subject"
+                                    placeholder="Enter subject" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <input name="message" type="message" class="form-control" id="message"
+                                    placeholder="Enter message" required />
+                            </div>
+                            <button type="submit" class="btn btn-primary">Send</button>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
